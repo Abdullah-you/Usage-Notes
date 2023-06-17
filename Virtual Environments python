@@ -1,0 +1,34 @@
+python3 -m venv project_name (by convension project_name = venv)
+
+example:
+python3 -m venv venv
+
+if we want to use already installed system packages we can use:
+python3 -m venv venv --system-site-packages   ---> it will include system pip packages also to the project
+
+after this if we install any packages they will be in the venv just not in system
+to check that:
+pip list --local
+
+Activation (after in project directory):
+source venv/bin/activate
+
+Deactivation:
+deactivate
+
+Delete environment:
+rm -rf project_name/
+
+every environment has its own packages and if we upgrade packages outside it'll not impact that project
+
+after a project done and its requirements set we can export them so that
+whenever a person uses that project can install them
+
+
+so to create requirements:	pip freeze > requirements.txt
+TO install requirements :	pip install -r requirements.txt
+
+
+we shouldn't put any files in venv folder
+all files should be in project directory not in venv
+

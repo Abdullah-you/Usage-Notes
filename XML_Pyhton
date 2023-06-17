@@ -1,0 +1,18 @@
+import requests
+import xml.etree.ElementTree as ET
+import datetime as dt
+
+url = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
+response = requests.get(url)
+
+content = ET.fromstring(response.text)
+
+
+
+
+temp_list = []
+main_list = []
+
+
+for i in content.iter(): --- iterates through all lines
+    print(i.attrib) - prints each line as a dictionary

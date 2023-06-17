@@ -1,0 +1,50 @@
+# Import required modules
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import sessionmaker, declarative_base
+from random import randint
+
+
+# Create database connection
+engine = create_engine('postgresql://username:password@localhost/mydatabase')
+Session = sessionmaker(bind=engine)
+Base = declarative_base()
+
+# Define models
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    email = Column(String)
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+# Create tables
+Base.metadata.create_all(engine)
+
+# Insert data
+session = Session()
+user1 = User(name='John Doe', email='johndoe@example.com')
+session.add(user1)
+session.commit()
+
+# Retrieve data
+users = session.query(User).all()
+for user in users:
+    print(user.name, user.email)
+
+# Update data
+user = session.query(User).filter_by(name='John Doe').first()
+user.email = 'newemail@example.com'
+session.commit()
+
+# Delete data
+user = session.query(User).filter_by(name='John Doe').first()
+session.delete(user)
+session.commit()
+
+# Close session
+session.close()
+

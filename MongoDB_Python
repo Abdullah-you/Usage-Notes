@@ -1,0 +1,68 @@
+Starting MongoDb-->
+
+import pymongo
+
+Where faaiz == username and 1400 == password  cluster0 == cluster name
+client = pymongo.MongoClient("mongodb+srv://faaiz:1400@cluster0.jswnxzj.mongodb.net/?retryWrites=true&w=majority")
+
+db = client["Testdb"]   ---- Selects Database i.e. Testdb
+
+collection = db["users"] --- Selects table i.e users.
+
+
+Working:
+
+collection.function_name()
+
+collection.find() -- finds all users
+
+collections.find_one({"name" : "Faaiz Ali"}) etc    ---- To filter out user based on some criteria
+
+function_name = insert_one / insert_many / delete_one / delete_many / update_many / update_one
+
+
+Syntax ----> update_one(user , {"$set" : {"key" : "New Value"}}) or update_one(user, change) - change = new_query
+
+syntax ----> insert_many -- takes list of dictionaries containing users or data etc
+
+
+Query Syntax ---> query = {"income": {"$lt": 2000}} then pass this query to any function related...
+
+Comparison operators:
+$eq: Matches documents where the value of a field equals a specified value.
+$ne: Matches documents where the value of a field does not equal a specified value.
+$gt: Matches documents where the value of a field is greater than a specified value.
+$gte: Matches documents where the value of a field is greater than or equal to a specified value.
+$lt: Matches documents where the value of a field is less than a specified value.
+$lte: Matches documents where the value of a field is less than or equal to a specified value.
+
+Update Operators
+
+Update operators are used to modify the values of fields in documents. Some commonly used update operators are:
+
+$set: Sets the value of a field.
+$unset: Removes a field from a document.
+$inc: Increments the value of a field by a specified amount.
+$push: Adds an element to an array.
+$pull: Removes all elements that match a specified condition from an array.
+
+
+
+
+
+
+
+
+
+Here Important thing is to use:
+
+from bson.objectid import ObjectId
+
+
+mongoDb has a default unique "_id"
+
+id = input("Enter ID: ")
+user_id = ObjectId(id) --- to create an id matchable with the database _id
+
+
+

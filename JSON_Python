@@ -1,0 +1,15 @@
+import json
+
+
+try: --- tries to append a new user at the end of existing json file
+            with open("accounts.json", 'r+') as f:
+                file = json.load(f)
+                file.append(data)
+                f.seek(0)
+                json.dump(file, f, indent=4)
+                
+                
+except: --- if file doesn't exists it'll create a new file and write user to it
+            with open('accounts.json', 'w') as f:
+                fdata = [data] -- giving data in a list of dictionaries for so that every user is a dict. in one list
+                json.dump(fdata, f, indent=4) -- indent 2/4 to make it beautifull indented
